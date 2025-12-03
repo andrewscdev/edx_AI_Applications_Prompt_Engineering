@@ -1,12 +1,9 @@
-// import { ChatOpenAI } from "@langchain/openai";
-// import { PromptTemplate } from "@langchain/core/prompts";
-// import { StructuredOutputParser } from "langchain/output_parsers";
-import { z } from "zod"; // Using Zod for schema definition
-
 const { ChatOpenAI } = require("@langchain/openai");
 const { PromptTemplate } = require("@langchain/core/prompts");
-const { StructuredOutputParser } = require("@langchain/output_parsers");
- 
+const { StructuredOutputParser } = require("@langchain/core/output_parsers");
+const z = require('zod');
+require('dotenv').config();
+
 // 1. Define the desired output schema using Zod
 const parser = StructuredOutputParser.fromZodSchema(
   z.object({
