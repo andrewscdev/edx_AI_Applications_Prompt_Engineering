@@ -39,20 +39,20 @@ const chain = promptTemplate.pipe(model).pipe(parser);
 
 const promptFunc = async (input) => {
   try {
-      console.log("input is: " + input + "type is: "+ typeof input)
+      //console.log("input is: " + input + "type is: "+ typeof input)
       // 5. Invoke the chain with a question
-      const res = await chain.invoke({
+      const result = await chain.invoke({
        question: input,
      });
 
     // For a non-coding question, the model returns an error message, causing parse() to throw an exception.
     // In this case, simply return the error message instead of the parsed results.
-        try { 
+       try { 
             console.log("Parsed Output:", result);
             console.log("Answer:", result.answer);
             console.log("Source:", result.source);
 
-            return parsedResult;
+            return result;
         } catch (e) { 
             return res;
         }
@@ -65,7 +65,6 @@ const promptFunc = async (input) => {
 
 // POST /ask route
 app.post("/ask", async (req, res) => {
- // const { question } = req.body;
     try {
         const userQuestion = req.body.question;
 
